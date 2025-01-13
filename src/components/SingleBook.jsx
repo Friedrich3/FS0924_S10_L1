@@ -13,7 +13,7 @@ class SingleBook extends Component {
         <Card
         // todo cambiare il setstate con una prop dal'padre che conterra id del libro cosi da matchare la cosa
           onClick={this.cardSelection}
-          style={{ border: this.props.asin === this.props.book.asin ? '3px solid red' : 'none' }}
+          style={{ border: this.props.asin === this.props.book.asin ? '3px solid green' : 'none' }}
         >
           <Card.Img variant="top" src={this.props.book.img} />
           <Card.Body>
@@ -29,3 +29,4 @@ class SingleBook extends Component {
 }
 
 export default SingleBook
+

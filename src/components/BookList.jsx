@@ -47,7 +47,7 @@ class BookList extends Component {
                   b.title.toLowerCase().includes(this.state.search.searchQuery)
                 )
                 .map((b) => (
-                  <Col xs={12} md={3} key={b.asin}>
+                  <Col xs={12} md={2} key={b.asin}>
                     <SingleBook book={b} handler={this.handleBookAsin} asin={this.state.selected.bookAsin}/>
                   </Col>
                 ))}
