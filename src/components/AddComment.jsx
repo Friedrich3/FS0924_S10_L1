@@ -20,7 +20,7 @@ class AddComment extends Component {
           body: JSON.stringify(this.state.comment),
           headers: {
             'Content-type': 'application/json',
-            Authorization: 'Bearer inserisci-qui-il-tuo-token',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2Nzg1MGM5YzM2NmU0MzAwMTU1NGZhMGEiLCJpYXQiOjE3MzY3NzI4NTMsImV4cCI6MTczNzk4MjQ1M30.zfghVia2UNy3bX9ljYePbQ3MLx_N_vjFJy0ebz_Uht4',
           },
         }
       )

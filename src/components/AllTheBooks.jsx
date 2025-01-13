@@ -6,7 +6,7 @@ const AllTheBooks = () => {
     <Row className="g-2">
       {fantasy.map((book) => {
         return (
-          <Col xs={12} md={4} key={book.asin}>
+          <Col xs={12} md={6} key={book.asin}>
             <Card className="book-cover d-flex flex-column">
               <Card.Img variant="top" src={book.img} />
               <Card.Body>
