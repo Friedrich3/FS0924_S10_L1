@@ -1,32 +1,35 @@
-import { Component } from 'react'
+
 import { Card } from 'react-bootstrap'
 
-class SingleBook extends Component {
+const SingleBook = function (props) {
 
-  cardSelection =() => {
-    this.props.handler(this.props.book.asin)
-  }
+  const cardSelection =() => {
+    if(props.asin !== props.book.asin){
+      props.setBookAsin(props.book.asin)
+    }
+    else{
+      props.setBookAsin(null)
+  }}
 
-  render() {
+
     return (
       <>
         <Card
         // todo cambiare il setstate con una prop dal'padre che conterra id del libro cosi da matchare la cosa
-          onClick={this.cardSelection}
-          style={{ border: this.props.asin === this.props.book.asin ? '3px solid green' : 'none' }}
+          onClick={cardSelection}
+          style={{ border: props.asin === props.book.asin ? '3px solid green' : 'none' }}
         >
-          <Card.Img variant="top" src={this.props.book.img} />
+          <Card.Img variant="top" src={props.book.img} />
           <Card.Body>
             <Card.Title style={{ color: 'black' }}>
-              {this.props.book.title}
+              {props.book.title}
             </Card.Title>
           </Card.Body>
         </Card>
-        {/* {this.state.selected && <CommentArea asin={this.props.book.asin} />} */}
       </>
     )
   }
-}
+
 
 export default SingleBook
 
