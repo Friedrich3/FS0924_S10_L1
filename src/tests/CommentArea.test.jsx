@@ -58,7 +58,7 @@ describe('Verifica che il componente CommentArea venga renderizzato correttament
         fireEvent.click(cartaTrovata)
        
         const commentList = await screen.findAllByTestId('listElement')
-        expect(commentList.length).toBeGreaterThanOrEqual(0)
+        expect(commentList.length).toBeGreaterThan(0)
 
 
     })
