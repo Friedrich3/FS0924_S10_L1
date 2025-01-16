@@ -1,5 +1,5 @@
 import fantasy from '../data/fantasy.json'
-import { render, screen } from "@testing-library/react";
+import { findAllByTestId, fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
 import BookList from "../components/BookList";
 
@@ -46,4 +46,21 @@ describe('Verifica che il componente CommentArea venga renderizzato correttament
         //4
         expect(commentList).toHaveLength(0)
     });
+
+    it('che al click di un libro si carichi la lista con i commenti', async ()=>{
+        render(<BookList books={fantasy} />);
+        const cards = screen.getAllByRole("img");
+        const numero = Math.floor(Math.random() * fantasy.length);
+
+        const searchBar = screen.getByPlaceholderText(/cerca un libro/i);
+        fireEvent.change(searchBar, { target: { value: "the last wish:" } });
+        const cartaTrovata = screen.getByRole("img");
+        fireEvent.click(cartaTrovata)
+       
+        const commentList = await screen.findAllByTestId('listElement')
+        
+        expect(commentList.length).toBeGreaterThanOrEqual(0)
+
+
+    })
 })
