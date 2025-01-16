@@ -9,11 +9,12 @@ const BookList = function (props) {
 
   return (
     <>
-      <Container>
+      <Container fluid>
         <Row>
-          <Col className="col 10">
+          <Col className="col 9">
+          <h2>BookList</h2>
             <Row className="justify-content-center mt-5">
-              <Col xs={12} md={6} className="text-center">
+              <Col xs={12} md={8} className="text-center">
                 <Form.Group>
                   <Form.Control
                     type="search"
@@ -24,14 +25,12 @@ const BookList = function (props) {
                 </Form.Group>
               </Col>
             </Row>
-            <Row className="g-2 mt-3">
-              <Col className="col-10">
-                <Row>
-                  <h2>BookList</h2>
+            <Row className=" mt-3">
+                
                   {props.books
                     .filter((b) => b.title.toLowerCase().includes(searchQuery))
                     .map((b) => (
-                      <Col xs={12} md={4} key={b.asin}>
+                      <Col xs={12} md={3} key={b.asin}>
                         <SingleBook
                           book={b}
                           setBookAsin={setBookAsin}
@@ -39,11 +38,9 @@ const BookList = function (props) {
                         />
                       </Col>
                     ))}
-                </Row>
-              </Col>
             </Row>
           </Col>
-          <Col className="col-2 text-center">
+          <Col className="col-3 text-center">
             <CommentArea asin={bookAsin} />
           </Col>
         </Row>
