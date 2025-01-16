@@ -54,7 +54,7 @@ const  CommentArea = function(props) {
 
     return (
       <div className="text-center">
-        <h3>CommentArea</h3>
+        <h3>Comment Area</h3>
         {isLoading && <Loading />}
         {isError && <Error />}
         {/* todo */}
