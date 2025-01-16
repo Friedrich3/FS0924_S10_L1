@@ -35,6 +35,7 @@ const BookList = function (props) {
                           book={b}
                           setBookAsin={setBookAsin}
                           asin={bookAsin}
+                          
                         />
                       </Col>
                     ))}

@@ -33,37 +33,72 @@ describe("Verifica che il .filter avvenga correttamente", () => {
     expect(searchBar).toBeInTheDocument();
   });
 
-  it('Controllo il numero di carte quando inserisco un input',()=>{
-     //1)
-     render(<BookList books={fantasy} />);
-     // 2)
-     const searchBar = screen.getByPlaceholderText(/cerca un libro/i);
-     // 3)
-     fireEvent.change(searchBar,{target: { value:'witcher'}} )
-     const cards1 = screen.getAllByRole('img');
-     // 4)
-     expect(cards1.length).toBeLessThan(fantasy.length)
-  });
-  it('Controllo il numero di carte quando inserisco un input',()=>{
+  it("Controllo il numero di carte quando inserisco un input", () => {
     //1)
     render(<BookList books={fantasy} />);
     // 2)
     const searchBar = screen.getByPlaceholderText(/cerca un libro/i);
     // 3)
-    fireEvent.change(searchBar,{target: { value:'warcraft'}})
-    const cards2 = screen.getAllByRole('img');
+    fireEvent.change(searchBar, { target: { value: "witcher" } });
+    const cards1 = screen.getAllByRole("img");
     // 4)
-    expect(cards2.length).toBeLessThan(fantasy.length)
- });
- it('Controllo il numero di carte quando inserisco un input impossibile',()=>{
-  //1)
-  render(<BookList books={fantasy} />);
-  // 2)
-  const searchBar = screen.getByPlaceholderText(/cerca un libro/i);
-  // 3)
-  fireEvent.change(searchBar,{target: { value:'fgabnoigagag'}})
-  const cards2 = screen.queryAllByRole('img');
-  // 4)
-  expect(cards2).toHaveLength(0)
-})
+    expect(cards1.length).toBeLessThan(fantasy.length);
+  });
+  it("Controllo il numero di carte quando inserisco un input", () => {
+    //1)
+    render(<BookList books={fantasy} />);
+    // 2)
+    const searchBar = screen.getByPlaceholderText(/cerca un libro/i);
+    // 3)
+    fireEvent.change(searchBar, { target: { value: "warcraft" } });
+    const cards2 = screen.getAllByRole("img");
+    // 4)
+    expect(cards2.length).toBeLessThan(fantasy.length);
+  });
+  it("Controllo il numero di carte quando inserisco un input impossibile", () => {
+    //1)
+    render(<BookList books={fantasy} />);
+    // 2)
+    const searchBar = screen.getByPlaceholderText(/cerca un libro/i);
+    // 3)
+    fireEvent.change(searchBar, { target: { value: "fgabnoigagag" } });
+    const cards2 = screen.queryAllByRole("img");
+    // 4)
+    expect(cards2).toHaveLength(0);
+  });
+});
+
+//ES 5 e 6
+describe("Verifica che, cliccando su un libro, il suo bordo cambi colore.", () => {
+  it("controllo se Booklist viene caricata correttamente", () => {
+    render(<BookList books={fantasy} />);
+  });
+  it("Controllo che al click di un libro diventi evidenziato", () => {
+    render(<BookList books={fantasy} />);
+    // 2)
+    const cards = screen.getAllByTestId("singleBook");
+    // console.log(cards[0].style.border)
+    const numero = Math.floor(Math.random() * fantasy.length);
+    // 3)
+    fireEvent.click(cards[numero]);
+    const cardClicked = cards[numero];
+    // console.log(cardClicked)
+    // 4)
+    expect(cardClicked).toHaveStyle("border: 3px solid green");
+  });
+  it("controllo che al click di un altro libro si evidenzi e scompaia l evidenza sul precendente", () => {
+    render(<BookList books={fantasy} />);
+    // 2)
+    const cards = screen.getAllByTestId("singleBook");
+    // console.log(cards[0].style.border)
+    const numero1 = Math.floor(Math.random() * fantasy.length);
+    const numero2 = Math.floor(Math.random() * fantasy.length);
+    fireEvent.click(cards[numero1]);
+    const cardClickedBefore = cards[numero1];
+    fireEvent.click(cards[numero2]);
+    const cardClickedAfter = cards[numero2];
+    // 4)
+    expect(cardClickedBefore).not.toHaveStyle("border: 3px solid green");
+    expect(cardClickedAfter).toHaveStyle("border: 3px solid green");
+  });
 });
