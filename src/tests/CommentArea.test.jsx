@@ -36,6 +36,7 @@ describe('Verifica che il componente CommentArea venga renderizzato correttament
         //4
         expect(button).not.toBeInTheDocument()
     });
+    //ES 7
     it('e non deve essere presente la lista',()=>{
         //1
         render(<BookList books={fantasy} />);
